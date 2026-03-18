@@ -2,7 +2,7 @@
 ## TL;DR Side quest from my web-project. so i though its gonna be reusable and healpfull
 
 ![CI](https://github.com/l4km47/devtools-detector/actions/workflows/ci.yml/badge.svg)
-
+[![Socket Badge](https://badge.socket.dev/npm/package/@l4km47/devtools-detector/0.1.4)](https://badge.socket.dev/npm/package/@l4km47/devtools-detector/0.1.4)
 A Vue 3 plugin for detecting browser devtools and optionally showing a break overlay or custom handlers.
 
 ## CI Status
