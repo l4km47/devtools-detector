@@ -1,6 +1,6 @@
 {
   "name": "@l4km47/devtools-detector",
-  "version": "0.1.6",
+  "version": "0.1.6-1",
   "description": "Vue 3 plugin to detect browser DevTools and warn or block.",
   "license": "MIT",
   "repository": {
