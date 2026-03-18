@@ -1,4 +1,4 @@
-import type { App, Ref } from 'vue';
+import type { App, Ref, Plugin } from 'vue';
 import { ref, readonly } from 'vue';
 import { DevToolsDetector } from './detector';
 import type { DevToolsDetectorOptions } from './detector';
@@ -54,7 +54,7 @@ function removeBreakOverlay(): void {
   document.body.style.pointerEvents = '';
 }
 
-export const DevToolsDetectorPlugin = {
+export const DevToolsDetectorPlugin: Plugin<[DevToolsPluginOptions?]> = {
   install(app: App, options: DevToolsPluginOptions = {}) {
     const { action = 'break', onOpen, onClose, productionOnly = false, ...detectorOptions } = options;
 
