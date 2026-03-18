@@ -1,21 +1,31 @@
 {
   "name": "@l4km47/devtools-detector",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Vue 3 plugin to detect browser DevTools and warn or block.",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/l4km47/devtools-detector.git"
   },
-  "bugs": { "url": "https://github.com/l4km47/devtools-detector/issues" },
+  "bugs": {
+    "url": "https://github.com/l4km47/devtools-detector/issues"
+  },
   "homepage": "https://github.com/l4km47/devtools-detector#readme",
-  "keywords": ["vue", "vite", "devtools", "security", "plugin"],
+  "keywords": [
+    "vue",
+    "vite",
+    "devtools",
+    "security",
+    "plugin"
+  ],
   "private": false,
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "prepare": "npm run build"
