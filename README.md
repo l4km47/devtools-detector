@@ -7,6 +7,8 @@
 
 A Vue 3 plugin for detecting browser devtools and optionally showing a break overlay or custom handlers.
 
+![Screenshot](./images/s1.png)
+
 ## CI Status
 
 This repository includes GitHub Actions CI that runs on push and pull request to `main`.
