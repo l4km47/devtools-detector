@@ -1,4 +1,4 @@
-# @alpha/devtools-detector
+# @l4km47/devtools-detector
 ## TL;DR Side quest from my web-project. so i though its gonna be reusable and healpfull
 
 ![CI](https://github.com/l4km47/devtools-detector/actions/workflows/ci.yml/badge.svg)
@@ -16,7 +16,7 @@ This repository includes GitHub Actions CI that runs on push and pull request to
 From your app:
 
 ```bash
-npm install @alpha/devtools-detector
+npm install @l4km47/devtools-detector
 ```
 
 For local development (monorepo):
@@ -30,7 +30,7 @@ npm install --save-dev file:../devtools-detector
 ```ts
 import { createApp } from 'vue';
 import App from './App.vue';
-import { DevToolsDetectorPlugin } from '@alpha/devtools-detector';
+import { DevToolsDetectorPlugin } from '@l4km47/devtools-detector';
 
 const app = createApp(App);
 
@@ -54,7 +54,7 @@ app.mount('#app');
 ## Composable
 
 ```ts
-import { useDevTools } from '@alpha/devtools-detector';
+import { useDevTools } from '@l4km47/devtools-detector';
 
 export default {
   setup() {
