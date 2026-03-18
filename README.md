@@ -1,4 +1,5 @@
 # @alpha/devtools-detector
+## TL;DR Side quest from my web-project. so i though its gonna be reusable and healpfull
 
 ![CI](https://github.com/l4km47/devtools-detector/actions/workflows/ci.yml/badge.svg)
 

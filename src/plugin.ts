@@ -3,8 +3,10 @@ import { ref, readonly } from 'vue';
 import { DevToolsDetector } from './detector';
 import type { DevToolsDetectorOptions } from './detector';
 
+// Injection key for Vue provide/inject context.
 export const DEVTOOLS_KEY = Symbol('alpha-sec-system');
 
+// Plugin options extend detector options with Vue-specific actions.
 export interface DevToolsPluginOptions extends DevToolsDetectorOptions {
   action?: 'break' | 'warn' | 'custom';
   onOpen?: () => void;
@@ -12,11 +14,15 @@ export interface DevToolsPluginOptions extends DevToolsDetectorOptions {
   productionOnly?: boolean;
 }
 
+// Runtime context exposed to components.
 export interface DevToolsPluginContext {
   isOpen: Readonly<Ref<boolean>>;
   detector: DevToolsDetector;
 }
 
+/**
+ * Injects a full-page break overlay when devtools are detected.
+ */
 function injectBreakOverlay(): void {
   if (document.getElementById('__devtools-overlay__')) return;
   const overlay = document.createElement('div');
@@ -38,6 +44,9 @@ function injectBreakOverlay(): void {
   overlay.style.pointerEvents = 'auto';
 }
 
+/**
+ * Removes the break overlay and restores page interaction.
+ */
 function removeBreakOverlay(): void {
   const overlay = document.getElementById('__devtools-overlay__');
   if (overlay) overlay.remove();
@@ -48,26 +57,38 @@ function removeBreakOverlay(): void {
 export const DevToolsDetectorPlugin = {
   install(app: App, options: DevToolsPluginOptions = {}) {
     const { action = 'break', onOpen, onClose, productionOnly = false, ...detectorOptions } = options;
+
+    // Skip plugin install in development when productionOnly is enabled.
     if (productionOnly && (import.meta as any)?.env?.DEV) return;
 
+    // Reactive state for whether devtools are open.
     const isOpen: Ref<boolean> = ref(false);
-    const detector = new DevToolsDetector({ ...detectorOptions, onChange(open) {
-      isOpen.value = open;
-      if (open) {
-        onOpen?.();
-        if (action === 'break') injectBreakOverlay();
-      } else {
-        onClose?.();
-        if (action === 'break') removeBreakOverlay();
-      }
-    }});
+
+    // Create detector and wire callback.
+    const detector = new DevToolsDetector({
+      ...detectorOptions,
+      onChange(open) {
+        isOpen.value = open;
+        if (open) {
+          onOpen?.();
+          if (action === 'break') injectBreakOverlay();
+        } else {
+          onClose?.();
+          if (action === 'break') removeBreakOverlay();
+        }
+      },
+    });
 
     detector.start();
 
+    // Provide plugin context via Vue injection.
     const ctx: DevToolsPluginContext = { isOpen: readonly(isOpen), detector };
     app.provide(DEVTOOLS_KEY, ctx);
+
+    // Expose on global property for convenience (app.$devtools).
     app.config.globalProperties.$devtools = ctx;
 
+    // Clean up polling when app unmounts.
     const originalUnmount = app.unmount;
     app.unmount = () => {
       detector.stop();
