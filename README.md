@@ -71,6 +71,12 @@ export default {
 
 ### `DevToolsDetectorPlugin`
 
+- ...
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup, contribution workflow, and pull request process.
+
 - `action: 'break' | 'warn' | 'custom'` (default `'break'`)
 - `onOpen?: () => void`
 - `onClose?: () => void`
